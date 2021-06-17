@@ -26,7 +26,7 @@ SECRET_KEY = '1oz&f#lw_=)r#b-w8e9@7p&j(*)j7nemp=+!38rup*i*f35auh'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+APPEND_SLASH=True
 
 # Application definition
 
@@ -79,9 +79,6 @@ REST_FRAMEWORK = {
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
     'DEFAULT_RENDERER_CLASSES': ("rest_framework.renderers.JSONRenderer",),
     "DEFAULT_MODEL_SERIALIZER_CLASS": "rest_framework.serializers.HyperlinkedModelSerializer"
 }
@@ -90,11 +87,10 @@ REST_FRAMEWORK = {
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'oauth2_provider.backends.OAuth2Backend',
-)
-
+# AUTHENTICATION_BACKENDS = (
+#     'django.contrib.auth.backends.ModelBackend',
+#     'oauth2_provider.backends.OAuth2Backend',
+# )
 # ALLOWED_HOSTS = ['0.0.0.0']
 
 

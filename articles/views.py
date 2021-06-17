@@ -26,7 +26,7 @@ class ArticleList(APIView):
     def get(self, request):
         try:
             article_list = Article.objects.all()
-            if len(article_list > 0):
+            if article_list.count() > 0:
                 serializer_data = ArticleSerializer(article_list, many=True)
                 return Response(data=serializer_data.data, status=status.HTTP_200_OK)
             return Response(status=status.HTTP_204_NO_CONTENT)
