@@ -39,7 +39,7 @@ class Bill(models.Model):
         with open(f"{TMPDIR}/{filename}", 'w') as f:
         # with open('employee_file.csv', mode='w') as employee_file:
             employee_writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            employee_writer.writerow(["ID FACTURA", self.bill_id, self.User.first_name, self.User.last_name, self.bill_date])
+            employee_writer.writerow(["ID FACTURA", self.bill_id, self.client.first_name, self.client.last_name, self.bill_date])
             for purchase in purchases:
                 employee_writer.writerow([purchase.article.code, purchase.article.name, purchase.article.price])
                 amount += purchase.article.price 
@@ -47,7 +47,7 @@ class Bill(models.Model):
             
             email = EmailMessage(
                 subject=f"Su compra en Zapatos Bernini {self.bill_id}",
-                from_email=self.User.email,
+                from_email=self.client.email,
                 to=[PURCHASES_EMAIL, ]
             )
             email.attach_file(f"{os.getcwd()}/{TMPDIR}/{filename}")
